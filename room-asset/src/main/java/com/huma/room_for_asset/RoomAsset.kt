@@ -42,7 +42,7 @@ class RoomAsset {
                 version: Int)
                 : RoomDatabase.Builder<T> {
 
-            openDb(context, name, version)
+            openDb(context, name, version-1)
 
             return Room.databaseBuilder(context, klass, name)
                     .addMigrations(object : Migration(1, 2) {
