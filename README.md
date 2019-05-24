@@ -34,7 +34,7 @@ Add the dependency
 ```gradle
 dependencies {
     // ... other dependencies
-    implementation 'com.github.ueen:RoomAsset:1.1.2'
+    implementation 'com.github.ueen:RoomAsset:1.1.8'
 }
 ```
 -----
@@ -71,7 +71,7 @@ Also you have to add a empty migration strategy to the databaseBuilder for Room 
                       }
                   })
 ```
-adhere to this format new ```Migration(previousVersionNumber,latestVersionNumber)```
+adhere to this format ```new Migration(previousVersionNumber,latestVersionNumber)```
 
 The database will be extracted from the assets and copied into place within your application's private data directory. If you prefer to store the database file somewhere else (such as external storage) you can use the alternate constructor to specify a storage path. You must ensure that this path is available and writable whenever your application needs to access the database.
 
