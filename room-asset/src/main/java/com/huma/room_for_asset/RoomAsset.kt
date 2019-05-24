@@ -39,32 +39,23 @@ class RoomAsset {
                 context: Context,
                 klass: Class<T>,
                 name: String,
+                version: int,
                 storageDirectory: String? = null,
                 factory: SQLiteDatabase.CursorFactory? = null)
                 : RoomDatabase.Builder<T> {
 
-            openDb(context, name, storageDirectory, factory)
+            openDb(context, name, version, storageDirectory, factory)
 
             return Room.databaseBuilder(context, klass, name)
-                    .addMigrations(object : Migration(1, 2) {
-                        override fun migrate(database: SupportSQLiteDatabase) {
-                            Log.w(TAG, "migrate from version 1 to 2 ")
-                        }
-                    })
+                    .fallbackToDestructiveMigration()
         }
 
         /**
          * Open the database and copy it to data folder using [SQLiteAssetHelper]
          */
-        private fun openDb(context: Context, name: String, storageDirectory: String?, factory: SQLiteDatabase.CursorFactory?) {
-            val instantiated = "instantiated"
-            val sharedPref = context.defaultSharedPreferences
-
-            if (!sharedPref.getBoolean(instantiated, false)) {
-                SQLiteAssetHelper(context, name, storageDirectory, factory, 1).writableDatabase.close()
-                sharedPref.edit().putBoolean(instantiated, true).apply()
-                Log.w(TAG, "RoomAsset is ready ")
-            }
+        private fun openDb(context: Context, name: String, version: int, storageDirectory: String?, factory: SQLiteDatabase.CursorFactory?) {
+            SQLiteAssetHelper(context, name, storageDirectory, factory, version).setForcedUpgrade.writableDatabase.close()
+            Log.w(TAG, "RoomAsset is ready ")
         }
     }
 }
