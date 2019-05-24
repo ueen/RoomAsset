@@ -56,7 +56,9 @@ class RoomAsset {
             Log.w(TAG, "RoomAsset is ready ")
         }
     }
-    class SQLHelper(context:Context, DB_NAME:String, DB_VERSION: Int):SQLiteAssetHelper {
+    class SQLHelper:SQLiteAssetHelper {
+        constructor(context:Context, DB_NAME:String, DB_VERSION: Int) : super(context, DB_NAME null,DB_VERSION) {
             setForcedUpgrade()
+        }            
     }
 }
