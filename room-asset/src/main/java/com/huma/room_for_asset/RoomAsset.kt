@@ -60,7 +60,7 @@ class RoomAsset {
             val sharedPref = context.defaultSharedPreferences
 
             if (version > sharedPref.getInt(instantiated, 0)) {
-                SQLHelper(context, name, version).getWritableDatabase.close()
+                SQLHelper(context, name, version).getWritableDatabase().close()
                 sharedPref.edit().putInt(instantiated, version).apply()
                 Log.w(TAG, "RoomAsset is ready ")
             }
