@@ -63,7 +63,8 @@ For the example above, the project would contain the following:
 
 If you want to upgrade the database (destructive!), increase the version number of the Database and in the Builder and overwrite the old Database in the assets (see below).
 Also you have to add a empty migration strategy to the Database Builder for Room (notice this is in Java!)
-```.addMigrations(new Migration(2,3) {
+```java
+.addMigrations(new Migration(2,3) {
                       @Override
                       public void migrate(@NonNull SupportSQLiteDatabase database) {
 
