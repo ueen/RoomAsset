@@ -42,7 +42,7 @@ class RoomAsset {
                 version: Int)
                 : RoomDatabase.Builder<T> {
 
-            openDb(context, name, version, storageDirectory, factory)
+            openDb(context, name, version)
 
             return Room.databaseBuilder(context, klass, name)
                     .fallbackToDestructiveMigration()
@@ -57,7 +57,6 @@ class RoomAsset {
         }
     }
     class SQLHelper(context:Context, DB_NAME:String, DB_VERSION: Int):SQLiteAssetHelper {
-            super(context, DB_NAME, null, null, DB_VERSION)
             setForcedUpgrade()
     }
 }
