@@ -47,7 +47,7 @@ class RoomAsset {
             return Room.databaseBuilder(context, klass, name)
                     .addMigrations(object : Migration(1, 2) {
                         override fun migrate(database: SupportSQLiteDatabase) {
-                            Log.w(TAG, "migrate from version 1 to 2 ")
+                            Log.w(TAG, "instantiated")
                         }
                     })
         }
@@ -60,15 +60,17 @@ class RoomAsset {
             val sharedPref = context.defaultSharedPreferences
 
             if (version > sharedPref.getInt(instantiated, 0)) {
-                SQLHelper(context, name, version).getWritableDatabase().close()
+                SQLHelper(context, name, version).writableDatabase.close()
                 sharedPref.edit().putInt(instantiated, version).apply()
-                Log.w(TAG, "RoomAsset is ready ")
+                Log.w(TAG, "RoomAsset is ready")
             }
         }
-    }
-    class SQLHelper:SQLiteAssetHelper {
+        class SQLHelper:SQLiteAssetHelper {
         constructor(context:Context, DB_NAME:String, DB_VERSION: Int) : super(context, DB_NAME, null,DB_VERSION) {
             setForcedUpgrade()
+            Log.w(TAG, "RoomAsset upgraded")
         }            
     }
+    }
+    
 }
