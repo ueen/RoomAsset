@@ -45,7 +45,11 @@ class RoomAsset {
             openDb(context, name, version)
 
             return Room.databaseBuilder(context, klass, name)
-                    .fallbackToDestructiveMigration()
+                    .addMigrations(object : Migration(1, 2) {
+                        override fun migrate(database: SupportSQLiteDatabase) {
+                            Log.w(TAG, "migrate from version 1 to 2 ")
+                        }
+                    })
         }
 
         /**
