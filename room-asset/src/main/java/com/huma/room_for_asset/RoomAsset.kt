@@ -54,8 +54,15 @@ class RoomAsset {
          * Open the database and copy it to data folder using [SQLiteAssetHelper]
          */
         private fun openDb(context: Context, name: String, version: Int, storageDirectory: String?, factory: SQLiteDatabase.CursorFactory?) {
-            SQLiteAssetHelper(context, name, storageDirectory, factory, version).setForcedUpgrade().writableDatabase.close()
+            SQLHelper(context, name, storageDirectory, factory, version).writableDatabase.close()
             Log.w(TAG, "RoomAsset is ready ")
         }
+    }
+    public class SQLHelper extends SQLiteAssetHelper {
+
+    private SQLHelper(Context context,String DB_NAME,String storageDirectory, SQLiteDatabase.CursorFactory factory,int DB_VERSION) {
+            super(context, DB_NAME, storageDirectory, factory, DB_VERSION);
+            setForcedUpgrade();
+        }    
     }
 }
