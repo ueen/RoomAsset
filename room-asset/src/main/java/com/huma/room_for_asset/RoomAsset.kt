@@ -39,7 +39,7 @@ class RoomAsset {
                 context: Context,
                 klass: Class<T>,
                 name: String,
-                version: int,
+                version: Int,
                 storageDirectory: String? = null,
                 factory: SQLiteDatabase.CursorFactory? = null)
                 : RoomDatabase.Builder<T> {
@@ -53,7 +53,7 @@ class RoomAsset {
         /**
          * Open the database and copy it to data folder using [SQLiteAssetHelper]
          */
-        private fun openDb(context: Context, name: String, version: int, storageDirectory: String?, factory: SQLiteDatabase.CursorFactory?) {
+        private fun openDb(context: Context, name: String, version: Int, storageDirectory: String?, factory: SQLiteDatabase.CursorFactory?) {
             SQLiteAssetHelper(context, name, storageDirectory, factory, version).setForcedUpgrade.writableDatabase.close()
             Log.w(TAG, "RoomAsset is ready ")
         }
