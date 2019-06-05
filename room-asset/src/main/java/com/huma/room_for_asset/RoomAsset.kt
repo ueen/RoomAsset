@@ -56,12 +56,12 @@ class RoomAsset {
          * Open the database and copy it to data folder using [SQLiteAssetHelper]
          */
         private fun openDb(context: Context, name: String, version: Int) {
-            val instantiated = "instantiated"
+            val instantiatedversion = "instantiatedversion"
             val sharedPref = context.defaultSharedPreferences
 
-            if (version > sharedPref.getInt(instantiated, 0)) {
+            if (version > sharedPref.getInt(instantiatedversion, 0)) {
                 SQLHelper(context, name, version).writableDatabase.close()
-                sharedPref.edit().putInt(instantiated, version).apply()
+                sharedPref.edit().putInt(instantiatedversion, version).apply()
                 Log.w(TAG, "RoomAsset is ready")
             }
         }
