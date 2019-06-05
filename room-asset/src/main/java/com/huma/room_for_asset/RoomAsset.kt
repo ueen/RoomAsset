@@ -46,7 +46,7 @@ class RoomAsset {
 
             val builder = Room.databaseBuilder(context, klass, name)
 
-            for (int i = 2; i <= version; i++) {
+            for (i in 2..version) {
             builder.addMigrations(object : Migration(i-1,i) {
                         override fun migrate(database: SupportSQLiteDatabase) {
                             Log.w(TAG, "instantiated")
