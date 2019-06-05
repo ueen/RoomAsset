@@ -44,12 +44,17 @@ class RoomAsset {
 
             openDb(context, name, version-1)
 
-            return Room.databaseBuilder(context, klass, name)
-                    .addMigrations(object : Migration(1, 2) {
+            val builder = Room.databaseBuilder(context, klass, name)
+
+            for (int i = 2; i <= version; i++) {
+            builder.addMigrations(object : Migration(i-1,i) {
                         override fun migrate(database: SupportSQLiteDatabase) {
                             Log.w(TAG, "instantiated")
                         }
                     })
+        }
+
+            return builder
         }
 
         /**
