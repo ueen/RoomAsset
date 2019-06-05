@@ -34,7 +34,7 @@ Add the dependency
 ```gradle
 dependencies {
     // ... other dependencies
-    implementation 'com.github.ueen:RoomAsset:1.1.8'
+    implementation 'com.github.ueen:RoomAsset:1.1.9'
 }
 ```
 -----
@@ -72,7 +72,8 @@ Also you have to add a empty migration strategy to the databaseBuilder for Room
 ```
 adhere to this format ```Migration(previousVersionNumber,latestVersionNumber)```*
 
-The database will be extracted from the assets and copied into place within your application's private data directory. If you prefer to store the database file somewhere else (such as external storage) you can use the alternate constructor to specify a storage path. You must ensure that this path is available and writable whenever your application needs to access the database.
+The database will be extracted from the assets and copied into place within your application's private data directory. If you prefer to store the database file somewhere else (such as external storage) you can use the alternate constructor to specify a storage path. You must ensure that 
+is path is available and writable whenever your application needs to access the database.
 
 ```kotlin
   val db = RoomAsset.databaseBuilder(applicationContext, AppDatabase::class.java, "chinook.db",
@@ -86,7 +87,7 @@ Supported data types: `TEXT`, `INTEGER`, `REAL`, `BLOB`
 
 The [sample](https://github.com/humazed/RoomAsset/tree/master/sample) project demonstrates a simple database creation and usage example using the classic [Chinook database](http://www.sqlitetutorial.net/sqlite-sample-database).
 
-*Example: after a few upgrades your RoomDatabase may look like this (notice this is Java!!)
+*Example: after a few upgrades your RoomDatabase may look like (notice this is Java!!)
 
 ```java
 @Database(entities = {Chinook.class}, version = 7)
